@@ -1,5 +1,5 @@
 # Etapa 1: Compilar la aplicación
-FROM maven:3.9.6-eclipse-temurin-17 AS builder
+FROM maven:3.8.5-openjdk-17-slim AS builder
 WORKDIR /build
 COPY pom.xml .
 RUN mvn dependency:go-offline
@@ -7,7 +7,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Etapa 2: Ejecutar la aplicación
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
 # Instalar utilidades útiles
@@ -18,6 +18,8 @@ RUN apk add --no-cache \
     ps \
     netstat \
     net-tools \
+    lsof \
+    iputils-ping \
     bash
 
 COPY --from=builder /build/target/*.jar app.jar
