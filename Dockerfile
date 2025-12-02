@@ -15,8 +15,6 @@ RUN apk add --no-cache \
     curl \
     wget \
     htop \
-    ps \
-    netstat \
     net-tools \
     lsof \
     iputils-ping \
