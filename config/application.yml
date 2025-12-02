@@ -1,0 +1,16 @@
+application:
+  name: Demo API
+  description: Documentacion de Demo API
+  version: 1.0
+springdoc:
+  application:
+    name: demo
+    title: demo
+    version: 1.0.0
+    description: demo
+    swagger:
+      enabled: true
+      title: demo
+      description: demo
+      version: 1.0.0
+      
