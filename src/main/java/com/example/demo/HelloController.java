@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,9 +19,10 @@ public class HelloController {
         return "Hello World!";
     }
 
-    @Operation(description = "Hello by name", operationId = "helloByName")
-    @PostMapping("/hello")
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+    @Operation(description = "Hello by name (JSON)", operationId = "helloByNameJson")
+    @PostMapping(path = "/hello", consumes = "application/json")
+    public String helloJson(@RequestBody HelloRequest request) {
+        String name = request.getName() == null ? "World" : request.getName();
         return "Hello " + name + "!";
     }
 }
