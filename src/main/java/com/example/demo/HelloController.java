@@ -18,7 +18,7 @@ public class HelloController {
     }
 
     @Operation(description = "Hello by name", operationId = "helloByName")
-    @GetMapping("/hello")
+    @PostMapping("/hello")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
         return "Hello " + name + "!";
     }
